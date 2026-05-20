@@ -5,25 +5,37 @@ void main() {
   runApp(const MyApp());
 }
 
-final GoRouter _router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const LoginPage(),
-    ),
-    GoRoute(
-      path: '/home',
-      builder: (context, state) => const HomePage(),
-    ),
-    GoRoute(
-      path: '/erro',
-      builder: (context, state) => const ErrorPage(),
-    ),
-  ],
-);
+GoRouter _createRouter() {
+  return GoRouter(
+    routes: [
+      GoRoute(path: '/', builder: (context, state) => const LoginPage()),
+      GoRoute(path: '/home', builder: (context, state) => const HomePage()),
+      GoRoute(path: '/erro', builder: (context, state) => const ErrorPage()),
+    ],
+  );
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+    _router = _createRouter();
+  }
+
+  @override
+  void dispose() {
+    _router.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,10 +137,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Bem-vindo!',
-              style: TextStyle(fontSize: 28),
-            ),
+            const Text('Bem-vindo!', style: TextStyle(fontSize: 28)),
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
