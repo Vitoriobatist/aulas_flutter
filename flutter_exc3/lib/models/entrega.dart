@@ -2,6 +2,7 @@
 
 class Entrega {
   int? id;
+  String? firebaseKey;
   String codigo;
   String destinatario;
   String endereco;
@@ -20,6 +21,7 @@ class Entrega {
 
   Entrega({
     this.id,
+    this.firebaseKey,
     required this.codigo,
     required this.destinatario,
     required this.endereco,
@@ -28,6 +30,32 @@ class Entrega {
     required this.longitude,
     required this.dataHoraAtualizacao,
   });
+
+  // Converte para JSON (Firebase Realtime Database)
+  Map<String, dynamic> toJson() {
+    return {
+      'codigo': codigo,
+      'destinatario': destinatario,
+      'endereco': endereco,
+      'status': status,
+      'latitude': latitude,
+      'longitude': longitude,
+      'dataHoraAtualizacao': dataHoraAtualizacao,
+    };
+  }
+
+  factory Entrega.fromJson(Map<String, dynamic> json, {String? firebaseKey}) {
+    return Entrega(
+      firebaseKey: firebaseKey,
+      codigo: json['codigo']?.toString() ?? '',
+      destinatario: json['destinatario']?.toString() ?? '',
+      endereco: json['endereco']?.toString() ?? '',
+      status: json['status']?.toString() ?? statusOpcoes.first,
+      latitude: _toDouble(json['latitude']),
+      longitude: _toDouble(json['longitude']),
+      dataHoraAtualizacao: json['dataHoraAtualizacao']?.toString() ?? '',
+    );
+  }
 
   // Converte objeto para Map (para salvar no SQLite)
   Map<String, dynamic> toMap() {
@@ -72,6 +100,7 @@ class Entrega {
   // Cria cópia com campos atualizados
   Entrega copyWith({
     int? id,
+    String? firebaseKey,
     String? codigo,
     String? destinatario,
     String? endereco,
@@ -82,6 +111,7 @@ class Entrega {
   }) {
     return Entrega(
       id: id ?? this.id,
+      firebaseKey: firebaseKey ?? this.firebaseKey,
       codigo: codigo ?? this.codigo,
       destinatario: destinatario ?? this.destinatario,
       endereco: endereco ?? this.endereco,

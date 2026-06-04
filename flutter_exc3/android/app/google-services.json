@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "536115888577",
+    "project_id": "entregas-unifenas",
+    "storage_bucket": "entregas-unifenas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536115888577:android:2f6438533d136d55502f40",
+        "android_client_info": {
+          "package_name": "com.example.flutter_exc3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7H8KmAQG8Ph6J1wRO3g7WcxKNWq7Rliw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

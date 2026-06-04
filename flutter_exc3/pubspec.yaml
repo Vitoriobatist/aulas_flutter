@@ -22,6 +22,9 @@ dependencies:
 
   # Ícones extras
   cupertino_icons: ^1.0.6
+  firebase_core: ^4.10.0
+  firebase_database: ^12.4.2
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +33,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/icon.png
+    - assets/logo_full.png
